@@ -24,12 +24,22 @@ $(document).ready(function() {
 	function fetchStarter(course){
 		$.get("fetchfood.php", {'course': course}, function(data){
 				var obj = $.parseJSON(data);
+
+				console.log(data);
+				var i = 0;
+
 				$.each(obj, function(){
 					name = this['name'];
 					info = this['info'];
 					price = this['price'];
-					$("#starter").clone().insertAfter("#starter");
 					showStarter(name, info, price);
+					i++;
+					if(i == obj.length){
+						return false;
+					} else{
+						$("#starter").clone().insertAfter("#starter");
+
+					}
 				});
 			});
 	}
@@ -38,13 +48,21 @@ $(document).ready(function() {
 		$.get("fetchfood.php", {'course': course}, function(data){
 				var obj = $.parseJSON(data);
 
+				console.log(data);
+				var i = 0;
+
 				$.each(obj, function(){
-					$("#main").clone().insertAfter("#main");
 					name = this['name'];
 					info = this['info'];
 					price = this['price'];
 					showMainCourse(name, info, price);
-					
+					i++;
+					if(i == obj.length){
+						return false;
+					} else{
+						$("#main").clone().insertAfter("#main");
+
+					}
 				});
 			});
 	}
@@ -52,12 +70,22 @@ $(document).ready(function() {
 	function fetchDessert(course){
 		$.get("fetchfood.php", {'course': course}, function(data){
 				var obj = $.parseJSON(data);
+
+				console.log(data);
+				var i = 0;
+
 				$.each(obj, function(){
 					name = this['name'];
 					info = this['info'];
 					price = this['price'];
-					$("#dessert").clone().insertAfter("#dessert");
 					showDessert(name, info, price);
+					i++;
+					if(i == obj.length){
+						return false;
+					} else{
+						$("#dessert").clone().insertAfter("#dessert");
+
+					}
 				});
 			});
 	}
@@ -70,10 +98,10 @@ $(document).ready(function() {
 	}
 
 	function showMainCourse (name, info, price){
-
-		mainName.innerHTML = name;
-		mainInfo.innerHTML = info;
-		mainPrice.innerHTML = price;
+			mainName.innerHTML = name;
+			mainInfo.innerHTML = info;
+			mainPrice.innerHTML = price;
+			
 	}
 
 	function showDessert (name, info, price){
